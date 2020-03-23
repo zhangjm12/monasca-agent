@@ -920,7 +920,7 @@ def _get_pod_owner_pair(kubernetes_connector, pod_owner_type, pod_owner_name, po
                      "Setting ReplicaSet as dimension")
             deployment_name = None
         else:
-            replicaset_endpoint = "/apis/extensions/v1beta1/namespaces/{}/replicasets/{}".format(
+            replicaset_endpoint = "/apis/apps/v1/namespaces/{}/replicasets/{}".format(
                 pod_namespace, pod_owner_name)
             deployment_name = _attempt_to_get_owner_name(kubernetes_connector, replicaset_endpoint)
         if not deployment_name:

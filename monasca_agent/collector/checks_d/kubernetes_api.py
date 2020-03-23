@@ -180,7 +180,7 @@ class KubernetesAPI(checks.AgentCheck):
 
     def _report_deployment_metrics(self, dimensions, kubernetes_labels):
         try:
-            deployments = self._send_request("/apis/extensions/v1beta1/deployments")
+            deployments = self._send_request("/apis/apps/v1/deployments")
         except Exception as e:
             self.log.error("Error getting deployment data from Kubernetes API - {}".format(e))
             return
