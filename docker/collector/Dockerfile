@@ -9,7 +9,7 @@ ARG CONSTRAINTS_BRANCH=master
 ARG EXTRA_DEPS="Jinja2 prometheus_client docker-py"
 
 # Always start from `monasca-base` image and use specific tag of it.
-ARG BASE_TAG=master
+ARG BASE_TAG=train
 FROM monasca/base:$BASE_TAG
 
 # Environment variables used for our service or wait scripts.

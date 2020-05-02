@@ -135,6 +135,20 @@ class Rate(Metric):
         delta_v = self.value - self.start_value
         try:
             rate = delta_v / float(delta_t)
+            if rate < 0:
+                log.warning(
+                    'Conflicting values reported for metric %s with dimensions %s at time (%d, %d): (%f, %f)',
+                    self.metric['name'],
+                    self.metric['dimensions'],
+                    self.start_timestamp,
+                    self.timestamp,
+                    self.start_value,
+                    self.value)
+                self.start_timestamp = self.timestamp
+                self.start_value = self.value
+                self.timestamp = None
+                self.value = None
+                return []
         except ZeroDivisionError:
             log.warning(
                 'Conflicting values reported for metric %s with dimensions %s at time %d: (%f, %f)',
